@@ -7,6 +7,16 @@ pragma solidity ^0.8.0;
  */
 
 interface iTokenInterface {
+
+     /** Events */
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+    );
     function totalSupply() external view returns (uint256);
 
     function balanceOf(address account) external view returns (uint256);
@@ -27,14 +37,4 @@ interface iTokenInterface {
         address recipient,
         uint256 amount
     ) external returns (bool);
-
-    /** Events */
-
-    event Transfer(address indexed from, address indexed to, uint256 value);
-
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 value
-    );
 }
