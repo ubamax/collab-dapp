@@ -105,14 +105,5 @@ contract iToken is Ownable, iTokenInterface {
         emit Transfer(address(0), account, amount);
     }
 
-    function burn(address account, uint256 amount) public virtual onlyOwner() {
-        require(account != address(0), "burn from the zero address");
-
-        uint256 accountBalance = balances[account];
-        require(accountBalance >= amount, "burn amount exceeds balance");
-        balances[account] = accountBalance - amount;
-        _totalSupply -= amount;
-
-        emit Transfer(account, address(0), amount);
-    }
+   
 }
