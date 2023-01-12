@@ -17,13 +17,6 @@ interface iTokenInterface {
         address indexed spender,
         uint256 value
     );
-    function totalSupply() external view returns (uint256);
-
-    function balanceOf(address account) external view returns (uint256);
-
-    function transfer(address recipient, uint256 amount)
-        external
-        returns (bool);
 
     function allowance(address owner, address spender)
         external
@@ -37,4 +30,13 @@ interface iTokenInterface {
         address recipient,
         uint256 amount
     ) external returns (bool);
+    function totalSupply() external view returns (uint256);
+
+    function balanceOf(address account) external view returns (uint256);
+
+    function transfer(address recipient, uint256 amount)
+        external
+        returns (bool);
+
+    
 }
