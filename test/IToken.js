@@ -32,14 +32,14 @@ contract(iToken, async (accounts) => {
   });
 
   it('handles delegated token transfers', async () => {
-    const status = await this.token.transfer.call(recipient, 50, {
+    const status = await this.token.transfer.call(recipient, 99, {
       from: initialHolder,
     });
     assert.equal(status, true);
 
     // Transferring amount larger than your balance
     await shouldThrow(
-      this.token.transfer.call(recipient, 1000, { from: initialHolder })
+      this.token.transfer.call(recipient, 999, { from: initialHolder })
     );
 
     // Try transferring something larger than the approved amount
@@ -68,12 +68,12 @@ contract(iToken, async (accounts) => {
     });
 
     it('rejects a null account', async () => {
-      await shouldThrow(this.token.mint.call(0, 50, { from: initialHolder }));
+      await shouldThrow(this.token.mint.call(0, 99, { from: initialHolder }));
     });
 
     describe('for a non zero account', () => { 
         beforeEach('minting', async () => {
-        await this.token.mint.call(initialHolder, 50, { from: initialHolder });
+        await this.token.mint.call(initialHolder, 99, { from: initialHolder });
         });
     });
     
@@ -86,19 +86,19 @@ contract(iToken, async (accounts) => {
     });
 
     it('rejects a null account', async () => {
-      await shouldThrow(this.token.burn.call(0, 50, { from: initialHolder }));
+      await shouldThrow(this.token.burn.call(0, 99, { from: initialHolder }));
     });
 
     describe('for a non zero account', () => {
       it('rejects burning more than balance', async () => {
         await shouldThrow(
-          this.token.burn.call(recipient, 1000, { from: initialHolder })
+          this.token.burn.call(recipient, 999, { from: initialHolder })
         );
       });
     });
 
     beforeEach('burning', async () => {
-      await this.token.burn.call(initialHolder, 50, { from: initialHolder });
+      await this.token.burn.call(initialHolder, 90, { from: initialHolder });
     });
 
   });
