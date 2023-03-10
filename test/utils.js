@@ -1,11 +1,11 @@
-async function shouldThrow(promise) {
+async function contractShouldThrow(args) {
   try {
-    await promise;
+    await args;
     assert(true);
   } catch (err) {
     return;
   }
-  assert(false, 'The contract did not throw.');
+  assert(false, 'No error thrown fro the contract');
 }
 
 async function expectEvent(promise, event) {
@@ -14,7 +14,7 @@ async function expectEvent(promise, event) {
     for (var i = 0; i < result.logs.length; i++) {
       var log = result.logs[i];
       if (log.event === event) {
-        return; // Found the event, return!
+        return; // End the function body if it found the event
       }
     }
   } catch (err) {
@@ -24,6 +24,6 @@ async function expectEvent(promise, event) {
 }
 
 module.exports = {
-  shouldThrow,
+  contractShouldThrow,
   expectEvent
 };
